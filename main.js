@@ -4,10 +4,22 @@ var _         = require('lodash'),
     writefile = require('writefile'),
     logar     = require('logar')('templar');
 
+/**
+ * Makes a relative path absolute
+ * @param dir input dir
+ * @returns {*} output dir
+ */
 var parsePath = function (dir) {
 	return path.isAbsolute(dir) ? dir : path.resolve(dir)
 };
 
+/**
+ * Parses a single directory
+ * @param input input directory
+ * @param templateData lodash template data
+ * @param output output directory
+ * @returns {Promise}
+ */
 var templarWalker = function (input, templateData, output) {
 	input = parsePath(input);
 	output = parsePath(output);
@@ -51,6 +63,13 @@ var templarWalker = function (input, templateData, output) {
 	});
 };
 
+/**
+ *  Can handle multiple directories
+ * @param {string|array} input directories
+ * @param templateData replacement data
+ * @param output output directory
+ * @returns {Promise}
+ */
 var templar = function (input, templateData, output) {
 	if (_.isArray(input)) {
 		var queue = [];
