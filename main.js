@@ -22,10 +22,13 @@ var templarWalker = function (input, templateData, output) {
 				};
 			}
 		}).on('end', function () {
-			var counter = 0;
-			var length = Object.keys(files).length;
+			var counter = 0,
+			    parsedPaths = [],
+			    length = Object.keys(files).length;
+
 			for (var i = 0; i < length; i++) {
 				let current = files[Object.keys(files)[i]];
+
 				fs.readFile(current.input, function (err, content) {
 					if (err) {
 						reject(err);
@@ -34,9 +37,11 @@ var templarWalker = function (input, templateData, output) {
 						if (err) {
 							reject(err);
 						}
+						parsedPaths.push(current.output);
+
 						counter++;
 						if (counter == length) {
-							resolve();
+							resolve(parsedPaths);
 						}
 					});
 
