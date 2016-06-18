@@ -1,6 +1,6 @@
 {
   "name": "dir-templar",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Node module that can template and move an entire directory",
   "main": "main.js",
   "scripts": {
