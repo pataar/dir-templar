@@ -1,6 +1,6 @@
 {
   "name": "dir-templar",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Node module that can template and move an entire directory",
   "main": "main.js",
   "scripts": {
@@ -18,7 +18,6 @@
   "homepage": "https://github.com/pataar/dir-templar#readme",
   "dependencies": {
     "fs-extra": "^0.30.0",
-    "lodash": "^4.13.1",
-    "writefile": "^0.2.8"
+    "lodash": "^4.13.1"
   }
 }
