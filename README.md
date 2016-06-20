@@ -18,7 +18,7 @@ var templar = require('dir-templar');
 #### Parsing
 You can use the following syntax to parse templates
 ```javascript
-templar(input[], templateData, output);
+templar(input templateData, output[, walkFn]);
 ```
 
 
@@ -30,5 +30,19 @@ templar(['./dir1', './dir2'], {name: "My Name"}, './output').then(function(parse
 		//returns an error when something went wrong
 		console.error(error);
 	}
+);
+```
+
+You can also add a walk function. Which will be triggered on each file replace.
+```javascript
+templar(['./dir1', './dir2'], {name: "My Name"}, './output', function(path) {
+        //replace in  path name
+        return path.replace(/%replacement%/g, "pathreplacement");
+    }).then(function(parsedFiles){
+        //returns an array of parsed files.
+    }, function(error){
+        //returns an error when something went wrong
+        console.error(error);
+    }
 );
 ```
