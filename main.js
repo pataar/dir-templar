@@ -1,8 +1,7 @@
 var _         = require('lodash'),
     fs        = require('fs-extra'),
     path      = require('path'),
-    writefile = require('writefile'),
-    logar     = require('logar')('templar');
+    writefile = require('writefile')
 
 /**
  * Makes a relative path absolute
@@ -10,7 +9,7 @@ var _         = require('lodash'),
  * @returns {*} output dir
  */
 var parsePath = function (dir) {
-	return path.isAbsolute(dir) ? dir : path.resolve(dir)
+	return path.normalize(path.isAbsolute(dir) ? dir : path.resolve(dir));
 };
 
 /**
@@ -30,7 +29,7 @@ var templarWalker = function (input, templateData, output) {
 				var itemPath = parsePath(item.path);
 				files[item.stats.ino] = {
 					input:  itemPath,
-					output: itemPath.replace(input, output)
+					output: itemPath.replace(input, output + path.sep)
 				};
 			}
 		}).on('end', function () {
